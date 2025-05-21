@@ -2,6 +2,4 @@
 
 import dynamic from "next/dynamic";
 
-export const components = {
-  rich_text: dynamic(() => import("./RichText")),
-};
+export const components = {};
