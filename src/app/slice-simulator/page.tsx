@@ -1,7 +1,9 @@
-import { SliceSimulator, getSlices } from "@slicemachine/adapter-next";
+"use client";
+
+import { SliceSimulator } from "@prismicio/slice-simulator-react";
 import { SliceZone } from "@prismicio/react";
-import { redirect } from "next/navigation";
 import { components } from "@/slices";
+import { redirect } from "next/navigation";
 
 export default function SliceSimulatorPage({
   searchParams,
@@ -15,12 +17,12 @@ export default function SliceSimulatorPage({
     redirect("/");
   }
 
-  const slices = getSlices(searchParams.state);
+  const state = searchParams.state ? JSON.parse(searchParams.state) : {};
 
   return (
-    <SliceSimulator background="" zIndex={10}>
-      <div className="max-h-[900px]">
-        <SliceZone slices={slices} components={components} />
+    <SliceSimulator background="white" zIndex={10} state={state}>
+      <div className="max-h-[900px] overflow-y-auto">
+        <SliceZone slices={state?.slices ?? []} components={components} />
       </div>
     </SliceSimulator>
   );
