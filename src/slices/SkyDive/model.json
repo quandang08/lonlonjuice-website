@@ -25,13 +25,13 @@
             "label": "Flavor",
             "placeholder": "",
             "options": [
-              "lemonLine",
+              "lemonLime",
               "grape",
               "blackCherry",
               "strawberryLemonade",
               "watermelon"
             ],
-            "default_value": "lemonLine"
+            "default_value": "lemonLime"
           }
         }
       },
