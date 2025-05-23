@@ -1,18 +1,13 @@
-import { SliceSimulator } from "@prismicio/slice-simulator-react";
-import { getSlices } from "@slicemachine/adapter-next";
+import { SliceSimulator, getSlices } from "@slicemachine/adapter-next";
 import { SliceZone } from "@prismicio/react";
 import { redirect } from "next/navigation";
-
 import { components } from "@/slices";
 
-interface SliceSimulatorPageProps {
-  searchParams: {
-    secret?: string;
-    state?: string;
-  };
-}
-
-export default function SliceSimulatorPage({ searchParams }: SliceSimulatorPageProps) {
+export default function SliceSimulatorPage({
+  searchParams,
+}: {
+  searchParams: { secret?: string; state?: string };
+}) {
   if (
     process.env.SLICE_SIMULATOR_SECRET &&
     searchParams.secret !== process.env.SLICE_SIMULATOR_SECRET
