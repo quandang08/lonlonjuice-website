@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
@@ -10,40 +9,22 @@ export type BigTextProps = SliceComponentProps<Content.BigTextSlice>;
 /**
  * Component for "BigText" Slices.
  */
-const BigText: FC<BigTextProps> = ({ slice }) => {
+const BigText = ({ slice }: BigTextProps): JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="min-h-screen w-screen overflow-hidden bg-[#FE6334] text-[#FEE832]"
     >
-      Placeholder component for big_text (variation: {slice.variation}) slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use Prismic MCP with your code editor
-       *
-       * Get AI-powered help to build your slice components — based on your actual model.
-       *
-       * ▶️ Setup:
-       * 1. Add a new MCP Server in your code editor:
-       *
-       * {
-       *   "mcpServers": {
-       *     "Prismic MCP": {
-       *       "command": "npx",
-       *       "args": ["-y", "@prismicio/mcp-server"]
-       *     }
-       *   }
-       * }
-       *
-       * 2. Select Claude 3.7 Sonnet (recommended for optimal output)
-       *
-       * ✅ Then open your slice file and ask your code editor:
-       *    "Code this slice"
-       *
-       * Your code editor reads your slice model and helps you code faster ⚡
-       * 📚 Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-       */}
+      <h2 className="grid w-full gap-[3vw] py-10 text-center font-black uppercase leading-[.7]">
+        <div className="text-[34vw]">Soda</div>
+        <div className="grid gap-[3vw] text-[34vw] md:flex md:text-[11vw]">
+          <span className="inline-block">that </span>
+          <span className="inline-block max-md:text-[27vw]">makes </span>
+          <span className="inline-block max-md:text-[40vw]">you </span>
+        </div>
+        <div className="text-[32vw]">Smile</div>
+      </h2>
     </section>
   );
 };
