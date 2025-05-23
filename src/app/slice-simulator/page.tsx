@@ -20,10 +20,19 @@ export default function SliceSimulatorPage({
   const state = searchParams.state ? JSON.parse(searchParams.state) : {};
 
   return (
-    <SliceSimulator background="white" zIndex={10} state={state}>
-      <div className="max-h-[900px] overflow-y-auto">
-        <SliceZone slices={state?.slices ?? []} components={components} />
-      </div>
-    </SliceSimulator>
+    <SliceSimulator
+      background="white"
+      zIndex={10}
+      state={state}
+      sliceZone={({ slices }) => (
+        <div className="max-h-[900px] overflow-y-auto">
+          <SliceZone
+            slices={(slices ?? []).filter((slice) => typeof slice.id === "string")}
+            components={components}
+          />
+        </div>
+      )}
+    />
   );
+
 }
