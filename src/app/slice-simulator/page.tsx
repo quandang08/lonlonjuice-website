@@ -19,20 +19,21 @@ export default function SliceSimulatorPage({
 
   const state = searchParams.state ? JSON.parse(searchParams.state) : {};
 
+  const customSliceZone = (props: { slices: any[] }) => (
+    <div className="max-h-[900px] overflow-y-auto">
+      <SliceZone
+        slices={(props.slices ?? []).filter((slice) => typeof slice.id === "string")}
+        components={components}
+      />
+    </div>
+  );
+
   return (
     <SliceSimulator
       background="white"
       zIndex={10}
       state={state}
-      sliceZone={({ slices }) => (
-        <div className="max-h-[900px] overflow-y-auto">
-          <SliceZone
-            slices={(slices ?? []).filter((slice) => typeof slice.id === "string")}
-            components={components}
-          />
-        </div>
-      )}
+      sliceZone={customSliceZone}
     />
   );
-
 }
