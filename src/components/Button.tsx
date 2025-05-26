@@ -2,6 +2,7 @@ import { LinkField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import clsx from "clsx";
 
+// Định nghĩa kiểu props cho Button component
 type Props = {
   buttonLink: LinkField;
   buttonText: string | null;

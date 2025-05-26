@@ -1,17 +1,17 @@
 "use client";
 
 import React, { forwardRef, ReactNode } from "react";
-import { Float } from "@react-three/drei";
+import { Float } from "@react-three/drei";  // Component để tạo hiệu ứng nổi và xoay
 import { SodaCan, SodaCanProps } from "@/components/SodaCan";
 import { Group } from "three";
 
 type FloatingCanProps = {
-  flavor?: SodaCanProps["flavor"];
-  floatSpeed?: number;
-  rotationIntensity?: number;
-  floatIntensity?: number;
-  floatingRange?: [number, number];
-  children?: ReactNode;
+  flavor?: SodaCanProps["flavor"]; // Hương vị của lon soda
+  floatSpeed?: number; // Tốc độ nổi lên/xuống
+  rotationIntensity?: number; // Mức độ xoay
+  floatIntensity?: number; // Mức độ dao động nổi
+  floatingRange?: [number, number]; // Khoảng dao động theo trục Y
+  children?: ReactNode; // Cho phép truyền thêm nội dung con vào Float
 };
 
 const FloatingCan = forwardRef<Group, FloatingCanProps>(

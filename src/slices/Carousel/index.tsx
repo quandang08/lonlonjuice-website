@@ -17,7 +17,10 @@ import { SodaCanProps } from "@/components/SodaCan";
 import { ArrowIcon } from "./ArrowIcon";
 import { WavyCircles } from "./WavyCircles";
 
+// Số vòng xoay khi đổi hương vị
 const SPINS_ON_CHANGE = 8;
+
+// Danh sách hương vị lon soda, mỗi item gồm flavor, màu sắc, tên
 const FLAVORS: {
   flavor: SodaCanProps["flavor"];
   color: string;
@@ -56,6 +59,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
     tl.to(
       sodaCanRef.current.rotation,
       {
+         // Nếu bấm sang phải → quay giảm, trái → quay tăng
         y:
           index > currentFlavorIndex
             ? `-=${Math.PI * 2 * SPINS_ON_CHANGE}`
@@ -65,6 +69,7 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
       },
       0,
     )
+    // Đổi màu nền + màu họa tiết động
       .to(
         ".background, .wavy-circles-outer, .wavy-circles-inner",
         {
@@ -75,8 +80,11 @@ const Carousel = ({ slice }: CarouselProps): JSX.Element => {
         },
         0,
       )
+      // Ẩn text cũ
       .to(".text-wrapper", { duration: 0.2, y: -10, opacity: 0 }, 0)
+      // Cập nhật chỉ số flavor mới
       .to({}, { onStart: () => setCurrentFlavorIndex(nextIndex) }, 0.5)
+      // Hiện text mới
       .to(".text-wrapper", { duration: 0.2, y: 0, opacity: 1 }, 0.7);
   }
 

@@ -16,7 +16,7 @@ import { Bubbles } from "./Bubbles";
 import { useStore } from "@/hooks/useStore";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger); // Đăng ký plugin GSAP
 
 /**
  * Props for `Hero`.
@@ -27,14 +27,15 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
  * Component for "Hero" Slices.
  */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
-  const ready = useStore((state) => state.ready);
-  const isDesktop = useMediaQuery("(min-width: 768px)", true);
+  const ready = useStore((state) => state.ready); // Xác định đã sẵn sàng chạy GSAP chưa
+  const isDesktop = useMediaQuery("(min-width: 768px)", true); // Xác định đang ở desktop
 
   useGSAP(
     () => {
+      // Ngăn không chạy animation khi chưa "ready" hoặc đang ở mobile
       if (!ready && isDesktop) return;
 
-      const introTl = gsap.timeline();
+      const introTl = gsap.timeline(); // Timeline cho intro xuất hiện chữ
 
       introTl
         .set(".hero", { opacity: 1 })
@@ -43,7 +44,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           opacity: 0,
           ease: "power4.in",
           delay: 0.3,
-          stagger: 1,
+          stagger: 1, // Mỗi chữ hiện dần
         })
         .from(
           ".hero-subheading",
@@ -68,7 +69,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           trigger: ".hero",
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.5,
+          scrub: 1.5, // Theo cuộn chuột
         },
       });
 
@@ -98,7 +99,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           opacity: 0,
         });
     },
-    { dependencies: [ready, isDesktop] },
+    { dependencies: [ready, isDesktop] }, // Re-run khi 2 biến này thay đổi
   );
 
   return (
@@ -109,8 +110,8 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     >
       {isDesktop && (
         <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
-          <Scene />
-          <Bubbles count={300} speed={2} repeat={true} />
+          <Scene /> {/* Cảnh 3D */}
+          <Bubbles count={300} speed={2} repeat={true} /> {/* Bong bóng */}
         </View>
       )}
 
@@ -134,15 +135,15 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
               buttonLink={slice.primary.button_link}
               buttonText={slice.primary.button_text}
               className="hero-button mt-12"
-            />
+            /> {/* Hiển thị nút bấm lấy từ Prismic */}
           </div>
         </div>
 
         <div className="text-side relative z-[80] grid h-screen items-center gap-4 md:grid-cols-2">
           <PrismicNextImage
             className="w-full md:hidden"
-            field={slice.primary.cans_image}
-          />
+            field={slice.primary.cans_image} 
+          /> {/* Ảnh nếu mobile */}
           <div>
             <h2 className="text-side-heading text-balance text-6xl font-black uppercase text-sky-950 lg:text-8xl">
               <TextSplitter text={asText(slice.primary.second_heading)} />

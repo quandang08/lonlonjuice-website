@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from "clsx"; // Thư viện để gộp nhiều class dễ dàng, có thể truyền điều kiện
 
 type BoundedProps = {
   as?: React.ElementType;
